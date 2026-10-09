@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOKVA — Discover Local Assam</title>
+<meta name="description" content="LOKVA concept demo — a regional-first marketplace for local products from Assam.">
+<style>
+:root{--ink:#18342d;--green:#245d48;--leaf:#dce9d8;--cream:#faf7ef;--gold:#c18a37;--muted:#68766e;--line:#e6e3d8;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.demo-banner{background:#18342d;color:#f7f2e6;text-align:center;padding:9px 16px;font-size:12px;letter-spacing:.04em}
+header{position:sticky;top:0;z-index:10;background:rgba(250,247,239,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:15px 22px;display:flex;align-items:center;gap:26px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:25px;letter-spacing:-1.2px}
+.logo{height:39px;width:39px;border-radius:14px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:22px;transform:rotate(-4deg)}
+.brand small{display:block;font-size:10px;letter-spacing:1.7px;font-weight:700;color:var(--muted);margin-top:-3px}
+.navlinks{display:flex;gap:23px;margin-left:20px;font-size:14px;color:#42564d}
+.navlinks a:hover{color:var(--gold)}
+.navright{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:750;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:var(--green);color:white}.btn-primary:hover{background:#174532;transform:translateY(-1px)}
+.btn-outline{background:transparent;border:1px solid #cbd4c9;color:var(--ink)}
+.cart{background:#e8eee3;border-radius:999px;padding:10px 14px;font-weight:750}
+.menu{display:none}
+main{overflow:hidden}
+.hero{max-width:1180px;margin:auto;padding:54px 22px 42px;display:grid;grid-template-columns:1.03fr .97fr;gap:44px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#e8eee3;color:var(--green);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.dot{width:7px;height:7px;background:#c18a37;border-radius:50%}
+h1{font-size:clamp(42px,5vw,68px);line-height:1.02;letter-spacing:-3.2px;margin:20px 0 19px;max-width:650px}
+h1 em{font-family:Georgia,serif;font-weight:500;color:var(--green)}
+.hero p{font-size:17px;line-height:1.7;color:var(--muted);max-width:550px;margin:0 0 25px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:28px;color:#596a60;font-size:12px;font-weight:700}
+.trust-row span{display:flex;gap:7px;align-items:center}
+.hero-art{position:relative;min-height:420px;border-radius:32px;background:#e6e9d9;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-art:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:#c8d9bd;top:35px;right:35px}
+.hero-art:after{content:"";position:absolute;width:250px;height:250px;border-radius:50%;border:1px solid rgba(36,93,72,.2);bottom:-80px;left:-55px}
+.art-note{position:absolute;left:25px;top:25px;background:rgba(255,255,255,.78);padding:12px 15px;border-radius:15px;font-size:12px;font-weight:800;z-index:2}
+.art-note span{display:block;color:var(--muted);font-weight:500;margin-top:4px}
+.product-illustration{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,150px);gap:15px;transform:rotate(-4deg)}
+.food-tile{height:158px;border-radius:23px;background:#f8f2df;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 16px 30px #334b3220;border:1px solid #ffffffaa}
+.food-tile:nth-child(2){background:#d7e3cb;transform:translateY(22px)}.food-tile:nth-child(3){background:#f0d8b8}.food-tile:nth-child(4){background:#d8e2e6;transform:translateY(22px)}
+.food-emoji{font-size:54px;filter:drop-shadow(0 8px 4px #00000010)}.food-tile b{font-size:12px;margin-top:10px}
+.float-card{position:absolute;z-index:3;bottom:24px;right:24px;background:#fff;border-radius:18px;padding:14px 17px;box-shadow:0 10px 35px #203a2b16;font-size:12px}
+.float-card strong{display:block;font-size:18px;margin-bottom:3px}
+.section{max-width:1180px;margin:auto;padding:38px 22px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.kicker{color:var(--gold);font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:850}
+h2{font-size:clamp(28px,3vw,39px);letter-spacing:-1.5px;margin:7px 0 0}
+.section-head p{color:var(--muted);margin:0;max-width:390px;line-height:1.6;font-size:14px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}
+.category{border:1px solid var(--line);border-radius:20px;padding:19px 10px;text-align:center;background:#fff;transition:.2s}
+.category:hover,.category.active{border-color:#8ca88f;background:#edf3e8;transform:translateY(-2px)}
+.category .emoji{font-size:31px;display:block;margin-bottom:9px}.category b{font-size:12px}
+.toolbar{display:flex;gap:12px;align-items:center;margin:23px 0;flex-wrap:wrap}
+.searchbox{flex:1;min-width:220px;position:relative}
+.searchbox input{width:100%;border:1px solid var(--line);background:#fff;border-radius:999px;padding:14px 18px 14px 45px;outline:none}
+.searchbox:before{content:"⌕";position:absolute;left:18px;top:6px;font-size:27px;color:var(--muted)}
+select{border:1px solid var(--line);border-radius:999px;padding:13px 16px;background:#fff;color:var(--ink);outline:none}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.product{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}
+.product:hover{transform:translateY(-4px);box-shadow:0 14px 30px #1b39270d}
+.product-visual{height:185px;display:grid;place-items:center;position:relative;background:#e9eddf}
+.product:nth-child(4n+2) .product-visual{background:#f2e4d2}.product:nth-child(4n+3) .product-visual{background:#e5ebed}.product:nth-child(4n+4) .product-visual{background:#f0e9d5}
+.product-visual .bigemoji{font-size:74px;filter:drop-shadow(0 10px 7px #00000013)}
+.tag{position:absolute;left:12px;top:12px;background:#fff;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:800}
+.product-body{padding:15px;display:flex;flex-direction:column;flex:1}
+.product-body .origin{font-size:10px;color:var(--green);font-weight:850;text-transform:uppercase;letter-spacing:.09em}
+.product-body h3{font-size:15px;margin:7px 0 5px}.seller{color:var(--muted);font-size:11px}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:17px}
+.price{font-weight:850;font-size:17px}.price small{font-size:10px;color:var(--muted);font-weight:500}
+.add{width:34px;height:34px;border:0;border-radius:50%;background:#e6eee1;color:var(--green);font-size:21px;font-weight:500}
+.empty{padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
+.impact{background:#18342d;color:#f9f5eb;border-radius:28px;padding:34px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:24px;align-items:center}
+.impact h2{font-size:27px;letter-spacing:-.8px;margin:0}.impact p{color:#c8d4c9;font-size:13px;line-height:1.6;margin:9px 0 0}.metric strong{font-size:30px;display:block;color:#e9c27f}.metric span{font-size:12px;color:#c8d4c9}
+.seller-band{background:#e8eee3;border-radius:28px;padding:34px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center}
+.seller-band h2{font-size:30px}.seller-band p{color:var(--muted);line-height:1.7;max-width:650px}
+.footer{margin-top:55px;background:#f0ede3;border-top:1px solid var(--line)}
+.footer-inner{max-width:1180px;margin:auto;padding:32px 22px;display:flex;justify-content:space-between;gap:20px;align-items:center;color:var(--muted);font-size:12px}
+.modal-backdrop{position:fixed;inset:0;background:#10251dc7;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.open{display:flex}.modal{background:var(--cream);border-radius:24px;padding:25px;max-width:520px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 25px 80px #0004}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.modal h2{font-size:26px}.close{border:0;background:#e6e9df;border-radius:50%;height:36px;width:36px;font-size:20px}
+.formgrid{display:grid;gap:12px}.formgrid label{font-size:12px;font-weight:800}.formgrid input,.formgrid textarea,.formgrid select{display:block;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#18342d;color:#fff;padding:13px 19px;border-radius:999px;z-index:40;font-size:13px;transition:.25s;pointer-events:none;max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.hero{grid-template-columns:1fr;gap:25px;padding-top:35px}.hero-art{min-height:360px}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.impact{grid-template-columns:repeat(3,1fr)}.impact-intro{grid-column:1/-1}.navlinks{display:none}.menu{display:inline-flex}.seller-band{grid-template-columns:1fr}}
+@media(max-width:540px){.nav{padding:12px 15px;gap:12px}.brand{font-size:22px}.navright .btn-outline{display:none}.hero{padding:30px 16px}.hero-art{min-height:320px;border-radius:24px}.product-illustration{grid-template-columns:repeat(2,120px);gap:10px}.food-tile{height:130px}.food-emoji{font-size:43px}.section{padding:27px 16px}.section-head{display:block}.section-head p{margin-top:10px}.categories{gap:8px}.category{padding:15px 5px}.category b{font-size:11px}.products{gap:10px}.product-visual{height:145px}.product-visual .bigemoji{font-size:58px}.product-body{padding:12px}.product-body h3{font-size:13px}.impact{padding:24px;gap:17px;grid-template-columns:1fr 1fr}.impact-intro{grid-column:1/-1}.metric strong{font-size:25px}.seller-band{padding:24px}.footer-inner{display:block}.footer-inner div+div{margin-top:12px}h1{letter-spacing:-2.2px}}
+</style>
+</head>
+<body>
+<div class="demo-banner">CONCEPT DEMO · LOKVA IS AN IDEA-STAGE PROJECT · SAMPLE PRODUCTS & PRICES</div>
+<header>
+  <nav class="nav">
+    <a class="brand" href="#home"><span class="logo">ল</span><span>LOKVA<small>LOCAL ROOTS. WIDER REACH.</small></span></a>
+    <div class="navlinks"><a href="#shop">Explore products</a><a href="#how">How it works</a><a href="#sellers">For sellers</a></div>
+    <div class="navright"><button class="btn btn-outline" onclick="openModal('sellerModal')">Become a seller</button><button class="cart" onclick="showCart()">Bag <span id="cartCount">0</span></button><button class="btn btn-primary menu" onclick="document.getElementById('shop').scrollIntoView()">Explore</button></div>
+  </nav>
+</header>
+<main id="home">
+<section class="hero">
+  <div>
+    <span class="eyebrow"><span class="dot"></span> Made close to home · Assam, India</span>
+    <h1>Good things grow <em>locally.</em><br>Find them here.</h1>
+    <p>A concept marketplace for discovering Assam's local products, meeting the makers behind them, and helping small businesses reach more people.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#shop">Explore local finds <span>↗</span></a><button class="btn btn-outline" onclick="openModal('sellerModal')">I'm a local seller</button></div>
+    <div class="trust-row"><span>✳ Regional-first discovery</span><span>✳ Local seller stories</span><span>✳ Built for small businesses</span></div>
+  </div>
+  <div class="hero-art">
+    <div class="art-note">A little more local<span>Concept catalogue · Assam</span></div>
+    <div class="product-illustration">
+      <div class="food-tile"><span class="food-emoji">🍵</span><b>Assam tea</b></div>
+      <div class="food-tile"><span class="food-emoji">🧺</span><b>Bamboo craft</b></div>
+      <div class="food-tile"><span class="food-emoji">🧣</span><b>Handloom</b></div>
+      <div class="food-tile"><span class="food-emoji">🍯</span><b>Local honey</b></div>
+    </div>
+    <div class="float-card"><strong>From Assam, with care</strong><span>Meet local makers and their work.</span></div>
+  </div>
+</section>
+<section class="section" id="how">
+  <div class="section-head"><div><div class="kicker">Simple by design</div><h2>Local discovery, made easier.</h2></div><p>LOKVA is designed to make browsing regional products straightforward for customers and digital selling more approachable for local businesses.</p></div>
+  <div class="categories" id="categoryGrid">
+    <button class="category active" data-category="All"><span class="emoji">🌿</span><b>All products</b></button>
+    <button class="category" data-category="Tea & food"><span class="emoji">🍵</span><b>Tea & food</b></button>
+    <button class="category" data-category="Handloom"><span class="emoji">🧣</span><b>Handloom</b></button>
+    <button class="category" data-category="Crafts"><span class="emoji">🧺</span><b>Crafts</b></button>
+    <button class="category" data-category="Home"><span class="emoji">🏡</span><b>Home & living</b></button>
+    <button class="category" data-category="Wellness"><span class="emoji">🌼</span><b>Wellness</b></button>
+  </div>
+</section>
+<section class="section" id="shop">
+  <div class="section-head"><div><div class="kicker">The concept catalogue</div><h2>Discover local finds.</h2></div><p>Sample listings for demonstration only. Seller names, prices and availability are illustrative.</p></div>
+  <div class="toolbar"><div class="searchbox"><input id="searchInput" type="search" placeholder="Search products, categories or places…" aria-label="Search products"></div><select id="sortSelect" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="low">Price: Low to high</option><option value="high">Price: High to low</option></select><select id="locationSelect" aria-label="Filter by location"><option value="All">All locations</option><option>Jorhat</option><option>Sivasagar</option><option>Majuli</option><option>Guwahati</option><option>Dibrugarh</option></select></div>
+  <div class="products" id="productGrid"></div>
+</section>
+<section class="section">
+  <div class="impact">
+    <div class="impact-intro"><div class="kicker" style="color:#e9c27f">The ambition</div><h2>More visibility for local makers.</h2><p>LOKVA will validate its approach with sellers and buyers before a wider launch.</p></div>
+    <div class="metric"><strong>01</strong><span>Start with an Assam pilot</span></div>
+    <div class="metric"><strong>02</strong><span>Listen to local sellers</span></div>
+    <div class="metric"><strong>03</strong><span>Build from real feedback</span></div>
+  </div>
+</section>
+<section class="section" id="sellers">
+  <div class="seller-band"><div><div class="kicker">For local sellers</div><h2>Have something made locally?</h2><p>Join the LOKVA concept pilot interest list. Tell us what you make and what would help your business reach more customers. This demo form stores nothing and does not create a real seller account.</p></div><button class="btn btn-primary" onclick="openModal('sellerModal')">Share seller interest ↗</button></div>
+</section>
+</main>
+<footer class="footer"><div class="footer-inner"><div><a class="brand" href="#home"><span class="logo">ল</span><span>LOKVA<small>LOCAL ROOTS. WIDER REACH.</small></span></a><p>Concept marketplace for Assam's local products.</p></div><div><strong>Idea-stage concept</strong><p>Not a live commerce service. No real payments or orders are processed.</p><p>© 2026 LOKVA concept demo</p></div></div></footer>
+<div class="modal-backdrop" id="sellerModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)closeModal('sellerModal')">
+  <div class="modal"><div class="modal-head"><div><div class="kicker">Seller interest</div><h2 id="modalTitle">Tell us about your business.</h2></div><button class="close" onclick="closeModal('sellerModal')" aria-label="Close">×</button></div>
+    <form class="formgrid" id="sellerForm">
+      <label>Your name<input required name="name" placeholder="Name"></label>
+      <label>Business / product name<input required name="business" placeholder="What do you make or sell?"></label>
+      <label>Location in Assam<input required name="location" placeholder="Town or district"></label>
+      <label>Product category<select name="category" required><option value="">Choose a category</option><option>Tea & food</option><option>Handloom</option><option>Crafts</option><option>Home & living</option><option>Wellness</option><option>Other</option></select></label>
+      <label>What support would help? <textarea name="support" rows="3" placeholder="e.g. online visibility, product photography, delivery"></textarea></label>
+      <button class="btn btn-primary" type="submit">Preview interest submission</button>
+      <small style="color:var(--muted)">Demo only: information stays in this page session and is not sent to a server.</small>
+    </form>
+  </div>
+</div>
+<div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" onclick="if(event.target===this)closeModal('cartModal')"><div class="modal"><div class="modal-head"><div><div class="kicker">Demo bag</div><h2 id="cartTitle">Your saved finds</h2></div><button class="close" onclick="closeModal('cartModal')">×</button></div><div id="cartItems"></div><p style="font-size:12px;color:var(--muted)">This is a visual demo only. No checkout, payment or real order is available.</p><button class="btn btn-outline" onclick="closeModal('cartModal')">Continue exploring</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const products=[
+{id:1,name:"Golden Assam Breakfast Tea",cat:"Tea & food",loc:"Dibrugarh",seller:"Sample tea maker",price:280,emoji:"🍵",tag:"Regional favourite"},
+{id:2,name:"Handwoven Gamosa",cat:"Handloom",loc:"Sivasagar",seller:"Illustrative artisan listing",price:450,emoji:"🧣",tag:"Handwoven"},
+{id:3,name:"Bamboo Desk Basket",cat:"Crafts",loc:"Jorhat",seller:"Sample craft collective",price:320,emoji:"🧺",tag:"Handmade"},
+{id:4,name:"Terracotta Tea Cups",cat:"Home",loc:"Guwahati",seller:"Illustrative pottery listing",price:390,emoji:"🏺",tag:"Home & living"},
+{id:5,name:"Wildflower Honey",cat:"Tea & food",loc:"Majuli",seller:"Sample local producer",price:360,emoji:"🍯",tag:"Small batch"},
+{id:6,name:"Eri Silk Stole",cat:"Handloom",loc:"Sivasagar",seller:"Illustrative weaver listing",price:1450,emoji:"🧵",tag:"Traditional craft"},
+{id:7,name:"Bamboo Serving Tray",cat:"Crafts",loc:"Jorhat",seller:"Sample craft collective",price:520,emoji:"🪵",tag:"Natural material"},
+{id:8,name:"Herbal Bath Blend",cat:"Wellness",loc:"Guwahati",seller:"Illustrative wellness listing",price:240,emoji:"🌼",tag:"Botanical"}
+];
+let activeCategory="All",bag=[];
+const grid=document.getElementById("productGrid");
+function renderProducts(){
+ let q=document.getElementById("searchInput").value.toLowerCase().trim(),loc=document.getElementById("locationSelect").value,sort=document.getElementById("sortSelect").value;
+ let list=products.filter(p=>(activeCategory==="All"||p.cat===activeCategory||(activeCategory==="Home & living"&&p.cat==="Home"))&&(loc==="All"||p.loc===loc)&&(!q||[p.name,p.cat,p.loc,p.seller].join(" ").toLowerCase().includes(q)));
+ if(sort==="low")list.sort((a,b)=>a.price-b.price);if(sort==="high")list.sort((a,b)=>b.price-a.price);
+ grid.innerHTML=list.length?list.map(p=>`<article class="product"><div class="product-visual"><span class="tag">${p.tag}</span><span class="bigemoji">${p.emoji}</span></div><div class="product-body"><span class="origin">${p.cat} · ${p.loc}</span><h3>${p.name}</h3><div class="seller">${p.seller}</div><div class="price-row"><div class="price">₹${p.price.toLocaleString("en-IN")} <small>sample price</small></div><button class="add" aria-label="Add ${p.name} to demo bag" onclick="addToBag(${p.id})">+</button></div></div></article>`).join(""):`<div class="empty">No sample products match. Try another search or filter.</div>`;
+}
+function addToBag(id){bag.push(products.find(p=>p.id===id));document.getElementById("cartCount").textContent=bag.length;toast("Added to your demo bag — no real order created.");}
+function showCart(){document.getElementById("cartItems").innerHTML=bag.length?`<ul>${bag.map(p=>`<li style="margin:12px 0">${p.emoji} ${p.name} — ₹${p.price.toLocaleString("en-IN")} <small>(sample)</small></li>`).join("")}</ul><strong>Demo total: ₹${bag.reduce((s,p)=>s+p.price,0).toLocaleString("en-IN")}</strong>`:"<p>Your demo bag is empty. Add a sample product to see how this works.</p>";openModal("cartModal")}
+function openModal(id){document.getElementById(id).classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(id){document.getElementById(id).classList.remove("open");document.body.style.overflow=""}
+let toastTimer;function toast(msg){let el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2600)}
+document.getElementById("searchInput").addEventListener("input",renderProducts);
+document.getElementById("sortSelect").addEventListener("change",renderProducts);
+document.getElementById("locationSelect").addEventListener("change",renderProducts);
+document.querySelectorAll(".category").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".category").forEach(x=>x.classList.remove("active"));btn.classList.add("active");activeCategory=btn.dataset.category;renderProducts();document.getElementById("shop").scrollIntoView({behavior:"smooth"})}));
+document.getElementById("sellerForm").addEventListener("submit",e=>{e.preventDefault();let data=Object.fromEntries(new FormData(e.target).entries());closeModal("sellerModal");toast("Demo preview ready for "+data.name+" — no information was sent or saved.");e.target.reset();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("sellerModal");closeModal("cartModal")}});
+renderProducts();
+</script>
+</body>
+</html>
